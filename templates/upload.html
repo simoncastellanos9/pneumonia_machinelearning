@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+     <title>AI-ASSISTED PNEUMONIA DIAGNOSTICS</title>
+
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+     <meta name="description" content="">
+     <meta name="keywords" content="">
+     <meta name="author" content="Tooplate">
+     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+     <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+     <link rel="stylesheet" href="../static/css/font-awesome.min.css">
+     <link rel="stylesheet" href="../static/css/animate.css">
+     <link rel="stylesheet" href="../static/css/owl.carousel.css">
+     <link rel="stylesheet" href="../static/css/owl.theme.default.min.css">
+
+     <!-- MAIN CSS -->
+     <link rel="stylesheet" href="../static/css/tooplate-style.css">
+
+</head>
+<body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
+
+     <!-- PRE LOADER -->
+     <section class="preloader">
+          <div class="spinner">
+
+               <span class="spinner-rotate"></span>
+               
+          </div>
+     </section>
+
+
+     <!-- MENU -->
+     <section class="navbar navbar-default navbar-static-top" role="navigation">
+          <div class="container">
+
+               <div class="navbar-header">
+                    <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                         <span class="icon icon-bar"></span>
+                         <span class="icon icon-bar"></span>
+                         <span class="icon icon-bar"></span>
+                    </button>
+
+                    <!-- lOGO TEXT HERE -->
+                    <a href="upload.html" class="navbar-brand">AI-X</a>
+               </div>
+
+               <!-- MENU LINKS -->
+               <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                         <li><a href="#top" class="smoothScroll">Home</a></li>
+                         <li><a href="#methodology" class="smoothScroll">Methodology</a></li>
+                         <li><a href="#accuracy" class="smoothScroll">Model Accuracy</a></li>
+                         <li><a href="#report" class="smoothScroll">Report</a></li>
+                         <li><a href="#aboutus" class="smoothScroll">About Us</a></li>
+                    </ul>
+               </div>
+
+          </div>
+     </section>
+
+
+     <!-- HOME -->
+     <section id="home" class="slider" data-stellar-background-ratio="0.5">
+          <div class="container">
+               <div class="row">
+                    <div class="">
+                         <div class="item item-first" style="height: 400px;">
+                              <div class="caption">
+                                   <div class="col-md-offset-1 col-md-10">
+                                        <h3>AI-ASSISTED PNEUMONIA DIAGNOSTICS</h3>
+                                        <h2>Application of Convolutional Neural Networks<br>for X-Ray Image Processing</h2>
+                                   </div>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+          </div>
+     </section>
+
+     <!-- Patient Data Input -->
+     <section id="datainput">
+          <div class="container">
+               <div class="container">
+                    <div class="row">
+                         <div class="col-lg-12 col-sm-12">
+                              <h2 class="wow fadeInUp">Patient Data Input</h2>
+                         </div>
+                    </div>
+                    <div class="row">
+                         <div class="col-lg-4 col-sm-12" style="width: 40%;">
+                              <div class="row">
+                                   <div class="col-sm-12" style="text-align: left;">
+                                        <p>Provide x-ray image for analysis:<br></p>
+                                   <form method="post" action="/" enctype="multipart/form-data">
+                                        <dl>
+                                             <p>
+                                                  <input type="file" name="file" autocomplete="off" required>
+                                             </p>
+                                        </dl>
+                                        <p>
+                                             <input type="submit" value="Submit">
+                                        </p>
+                                   </form>     
+                              </div>
+                              {% if filename %}
+                                   <div class="col-sm-12">
+                                   <hr>
+                                   </div>
+                                   <div class="col-sm-12" style="text-align: center; padding: 5px; vertical-align: middle;">
+                                   <!-- <br> -->
+                                   <h5>PNEUMONIA DIAGNOSIS</h5>
+                                   {% if result == 1 %}
+                                        <strong style="color: white; background-color: darkred;">POSITIVE</strong>
+                                   {% elif result == 0 %}
+                                        <strong style="color: white; background-color: darkgreen;">NEGATIVE</strong>
+                                   {% endif %}
+                                   </div>
+                                   <div class="col-sm-12">
+                                   <hr>
+                                   </div>
+                                   <div class="col-sm-12" style="text-align: center; padding: 5px; vertical-align: middle;">
+                                   
+                                        <a name="methodology"><p> Accuracy of the CNN algorithm: 92%</p></a>
+                                   
+                                   </div>
+                                   <div class="col-sm-12">
+                                   </div>
+                              {% endif %}
+                         </div>
+                    </div>
+                    <div class="col-lg-6 col-sm-12">
+                         {% if filename %}
+                              <div style="padding-top: 10px; padding-bottom: 10px;">
+                                   <img src="{{ url_for('display_image', filename=filename) }}" style="width: 100%;">
+                              </div>
+                         {% endif %}
+                    </div>
+                    </div>
+          </div>
+     </section> 
+          
+
+     <!-- METHODOLOGY -->
+     <section id="methodology">
+          <div class="container">
+               <div class="row">
+                    <div class="col-md-12 col-sm-6">
+                         <div class="about-info">
+                              <h2 class="wow fadeInUp">Methodology</h2>
+                              <div class="wow fadeInUp">
+                                   <p>This is a pneumonia detection tool and was developed using a convolutional neural (CNN/vgg16) network architecture used
+                                   for deep learning. The tool recognizes x-ray patterns from an uploaded image file computing either a positive or
+                                   negative result for pneumonia.</p>
+                                   <p>This CNN model is from the Keras library and was trained and fitted using publicly available x-ray images provided in
+                                   Kaggle: 5,216 chest x-ray images (1,341 negative, 3,875 positive). In addition, the model was trained at various epoch
+                                   stages while monitoring for the most optimal accuracy scores for both precision and recall. Kaggle resource for x-ray
+                                   data images: https://www.kaggle.com/paultimothymooney/chest-xray-pneumonia</p>
+                              </div>
+                         </div>
+                    </div>
+                    
+               </div>
+          </div>
+     </section>
+
+     <!-- MODEL ACCURACY -->
+     <section id="accuracy">
+          <div class="container">
+               <div class="row">
+                    <div class="col-md-12 col-sm-6">
+                         <div class="about-info">
+                              <h2 class="wow fadeInUp">Model Accuracy</h2>
+                              <div class="wow fadeInUp">
+                                   <p>As with any CNN model, the above model predictions are not always accurate. Model training accuracy is 92%, with less
+                                   favorable testing accuracy scores of 62% precision and 67% recall.</p>
+                                   <p>During the model testing phase (624 test images), the most optimal CNN model was generated while using ~1-30 epochs
+                                   cycles. Model accuracy declines significantly after 50 plus epoch cycles due to overfitting</p>
+                              </div>
+                         </div>
+                    </div>
+                    
+               </div>
+          </div>
+     </section>
+
+     <!-- REPORT -->
+     <section id="report">
+          <div class="container">
+               <div class="row">
+                    <div class="col-md-12 col-sm-6">
+                         <div class="about-info">
+                              <h2 class="wow fadeInUp" data-wow-delay="0.6s">Report</h2>
+                              <div class="wow fadeInUp" data-wow-delay="0.8s">
+                                   <p>The report predicts x-ray images as either negative (0) or positive (1) for pneumonia. A trained hdf5 model file
+                                   containing weights for each layer, is compared against an uploaded “test” x-ray file using the above screen. Once the
+                                   report is submitted, a negative or positive prediction is displayed.</p>
+                              </div>
+                         </div>
+                    </div>
+                    
+               </div>
+          </div>
+     </section>
+
+
+     <!-- TEAM -->
+     <section id="aboutus" data-stellar-background-ratio="1">
+          <div class="container">
+               <div class="row" style="margin-bottom: 150px;">
+
+                    <div class="col-md-6 col-sm-6">
+                         <div class="about-info">
+                              <h2 class="wow fadeInUp" data-wow-delay="0.1s">About Us</h2>
+                         </div>
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <div class="col-md-3 col-sm-6">
+                         <div class="team-thumb wow fadeInUp" data-wow-delay="0.2s">
+                              <img src="../static/images/clay.jfif" class="img-responsive" alt="">
+
+                                   <div class="team-info">
+                                        <h3>Clay Swisher</h3>
+                                   </div>
+                         </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                         <div class="team-thumb wow fadeInUp" data-wow-delay="0.2s">
+                              <img src="../static/images/elijah.jfif" class="img-responsive" alt="">
+
+                                   <div class="team-info">
+                                        <h3>Elijah Abuel</h3>
+                                   </div>
+                         </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                         <div class="team-thumb wow fadeInUp" data-wow-delay="0.2s">
+                              <img src="../static/images/iryna.jfif" class="img-responsive" alt="">
+
+                                   <div class="team-info">
+                                        <h3>Iryna Marchiano</h3>
+                                   </div>
+                         </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                         <div class="team-thumb wow fadeInUp" data-wow-delay="0.2s">
+                              <img src="../static/images/simon.jfif" class="img-responsive" alt="">
+
+                                   <div class="team-info">
+                                        <h3>Simon Castellanos</h3>
+                                   </div>
+                         </div>
+                    </div>
+               </div>
+          </div>
+     </section>
+
+     <!-- SCRIPTS -->
+     <script src="../static/js/jquery.js"></script>
+     <script src="../static/js/bootstrap.min.js"></script>
+     <script src="../static/js/jquery.sticky.js"></script>
+     <script src="../static/js/jquery.stellar.min.js"></script>
+     <script src="../static/js/wow.min.js"></script>
+     <script src="../static/js/smoothscroll.js"></script>
+     <script src="../static/js/owl.carousel.min.js"></script>
+     <script src="../static/js/custom.js"></script>
+
+</body>
+</html>
